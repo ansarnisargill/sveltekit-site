@@ -22,7 +22,6 @@
     "html-minifier": "^4.0.0",
     "prettier": "~2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
-    "svelma": "^0.4.5",
     "svelte": "^3.34.0",
     "svelte-fa": "^2.2.1",
     "svelte-speedometer": "^1.1.0",
