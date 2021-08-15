@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faInfo } from '@fortawesome/free-solid-svg-icons'
-	import { faLock } from '@fortawesome/free-solid-svg-icons'
-	import { faHome } from '@fortawesome/free-solid-svg-icons'
+	import { faInfo } from '@fortawesome/free-solid-svg-icons';
+	import { faLock } from '@fortawesome/free-solid-svg-icons';
+	import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 	import { goto } from '$app/navigation';
 	import stringResources from '../stringResources';
@@ -23,57 +23,78 @@
 	function openNav() {
 		let x = window.matchMedia('(min-width: 450px)');
 		if (x.matches) {
-			document.getElementById('myNav').style.width = '25%';
+			document.getElementById('mobileNav').style.width = '25%';
 		} else {
-			document.getElementById('myNav').style.width = '100%';
+			document.getElementById('mobileNav').style.width = '100%';
 		}
 	}
 
 	function closeNav() {
-		document.getElementById('myNav').style.width = '0%';
+		document.getElementById('mobileNav').style.width = '0%';
 	}
 </script>
 
-<div id="myNav" class="overlay">
+<nav class="navbar main-header is-hidden-mobile" role="navigation">
+	<div class="navbar-brand">
+		<img class="navbar-item" alt="logo" src="/images/protect.png" on:click={gotoHome} />
+	</div>
+	<div class="navbar-end ">
+		<a class="navbar-item" href="/impressum">
+			<span class="icon">
+				<Fa icon={faInfo} />
+			</span>
+			<span>{stringResources.menu.secondBtnText}</span>
+		</a>
+		<a class="navbar-item" href="/datenschutz">
+			<span class="icon">
+				<Fa icon={faLock} />
+			</span>
+			<span>{stringResources.menu.thirdBtnText}</span>
+		</a>
+	</div>
+</nav>
+<div id="mobileNav" class="overlay is-hidden-desktop">
 	<h1 href="javascript:void(0)" class="closebtn" on:click={closeNav}>&times;</h1>
 	<div class="overlay-content">
 		<div class="columns m-4">
 			<div class=" column is-half p-4">
-					<button class="button m-4 is-block" on:click={gotoHome}>
-						<span class="icon">
-							<Fa icon={faHome} />
-						</span>
-						<span>{stringResources.menu.firtsBtnText}</span>
-					</button>
-					<button class="button m-4 is-block" on:click={gotoImpressum}>
-						<span class="icon">
-							<Fa icon={faInfo} />
-						</span>
-						<span>{stringResources.menu.secondBtnText}</span>
-					</button>
-					<button class="button m-4 is-block" on:click={gotoDatenschutz}>
-						<span class="icon">
-							<Fa icon={faLock} />
-						</span>
-						<span>{stringResources.menu.thirdBtnText}</span>
-					</button>
+				<button class="button m-4 is-block" on:click={gotoHome}>
+					<span class="icon">
+						<Fa icon={faHome} />
+					</span>
+					<span>{stringResources.menu.firtsBtnText}</span>
+				</button>
+				<button class="button m-4 is-block" on:click={gotoImpressum}>
+					<span class="icon">
+						<Fa icon={faInfo} />
+					</span>
+					<span>{stringResources.menu.secondBtnText}</span>
+				</button>
+				<button class="button m-4 is-block" on:click={gotoDatenschutz}>
+					<span class="icon">
+						<Fa icon={faLock} />
+					</span>
+					<span>{stringResources.menu.thirdBtnText}</span>
+				</button>
 			</div>
 		</div>
 	</div>
 </div>
-<span class="navOpener p-4" on:click={openNav}>&#9776;</span>
+<span class="navOpener p-4 is-hidden-desktop" on:click={openNav}>&#9776;</span>
 
 <style>
 	.navOpener {
-		cursor:pointer
+		cursor: pointer;
 	}
 	button {
-		color: var(--brandColor) !important;
+		color: black !important;
 		background-color: transparent;
 		border: none;
+		cursor: pointer;
 	}
 	button:hover {
-		color: var(--background) !important;
+		color: black !important;
+		background-color: rgb(168, 175, 235);
 	}
 	.overlay {
 		height: 100%;
@@ -106,6 +127,17 @@
 		position: absolute;
 		right: 45px;
 		font-size: 60px;
+	}
+
+	.main-header {
+		height: 80px;
+		background: #ffffff;
+		box-shadow: 0px 10px 10px rgba(2, 1, 45, 0.06);
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 19px;
 	}
 	@media screen and (max-height: 450px) {
 		.overlay .closebtn {
