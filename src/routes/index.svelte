@@ -34,33 +34,19 @@
 	<div class="hero-body">
 		<div class="columns">
 			<div class="column is-6">
-        <section>
-          <Banner appName={stringResources.appName} />
+				<section>
+					<Banner appName={stringResources.appName} />
 
-          <Quote quote={stringResources.indexPage.aboutText} writer={'Keywan Ghadami'} />
-        </section>
-				<section class="m-4" style="display: flex;justify-content: center;">
-					<div class="drop-zone-outer">
-						<p class="drop-zone-header">Scan your website for potential vulnerabilities.</p>
-						<div class="drop-zone-inner">
-							<div class="drop-inner-content">
-								<div class="select-file-div" />
-							</div>
-						</div>
-						<input
-							id="uploadField"
-							onchange="onSelectFile()"
-							type="file"
-							style="visibility:hidden;"
-							accept=".pdf"
-						/>
-						<br />
-						<br />
-						<button
-							class="buy-button-checkout button is-info is-fullwidth"
-							id="checkoutBtn"
-							onclick="checkOut()">Start Scan</button
-						>
+					<Quote quote={stringResources.indexPage.aboutText} writer={'Keywan Ghadami'} />
+				</section>
+				<section class="scan-div">
+					<div class="zone-outer">
+						<p class="zone-header mt-3">Scan your website for potential vulnerabilities.</p>
+
+						<input id="url" placeholder={stringResources.indexPage.scanInputPlaceHolder} type="text" class="mt-3" />
+						<button class="scan-button button is-info is-fullwidth mt-4" on:click={scanSite} >
+							Start Scan
+						</button>
 					</div>
 				</section>
 			</div>
@@ -69,17 +55,22 @@
 </section>
 
 <style>
-  .columns{
-    justify-content: center;
-  }
-	.drop-zone-outer {
+	.columns {
+		justify-content: center;
+	}
+	.scan-div {
+		display: flex;
+		justify-content: center;
+		margin-top: 4rem;
+	}
+	.zone-outer {
 		padding: 20px;
 		background: #ffffff;
-		box-shadow: 0px 20px 20px rgba(2, 1, 45, 0.24);
+		box-shadow: -1px 10px 20px rgba(2, 1, 45, 0.24);
 		border-radius: 10px;
 	}
 
-	.drop-zone-header {
+	.zone-header {
 		font-family: Roboto;
 		font-style: normal;
 		font-weight: bold;
@@ -88,23 +79,7 @@
 		color: #000000;
 	}
 
-	.drop-zone-inner {
-		border: 2px dashed #dfdfdf;
-		box-sizing: border-box;
-		border-radius: 5px;
-	}
-
-	.drop-inner-content {
-		text-align: center;
-		padding: 7% 0%;
-	}
-
-	.select-file-div {
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	.buy-button-checkout {
+	.scan-button {
 		background: rgba(57, 119, 240, 1);
 		border-radius: 5px;
 		border-style: none;
@@ -115,5 +90,17 @@
 		line-height: 23px;
 		text-align: center;
 		color: #ffffff;
+	}
+	#url {
+		height: 4rem;
+		width: 100%;
+		border-style: dotted;
+		font-size: 2rem;
+	}
+	#url:focus{
+		border:double;
+	}
+	#url::placeholder{
+		padding: 10px;
 	}
 </style>
